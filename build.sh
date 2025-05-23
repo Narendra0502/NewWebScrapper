@@ -1,7 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Install Chrome
-curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-yum localinstall -y google-chrome-stable_current_x86_64.rpm
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
+apt-get update
+apt-get install -y google-chrome-stable
 
 # Install ChromeDriver
 CHROME_VERSION=$(google-chrome --version | cut -d ' ' -f3 | cut -d '.' -f1)

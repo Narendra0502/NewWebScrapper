@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: merascrapper
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn scraper:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: PYTHONUNBUFFERED
+        value: TRUE
+      - key: MONGODB_URI
+        sync: false
+    autoDeploy: true
